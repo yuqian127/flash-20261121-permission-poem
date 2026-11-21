@@ -1,7 +1,13 @@
 // The poem about permission — entry program for make.fun.
-// Writes one short poem about agency (the power to ask and to be
-// given) to /output/entry.txt. No network, no input, fully
-// deterministic: every run produces the same 231 characters.
+//
+// The poem has two stanzas of four lines each. The first stanza
+// sets up the central image: a licence as a key, not a lock —
+// permission opens a door instead of closing one. The second
+// stanza states the bargain: borrow boldly, build on what you
+// were given, and hand it back a little brighter than you found it.
+//
+// Writes the poem to /output/entry.txt. No network, no input,
+// fully deterministic: every run produces the same 231 characters.
 
 import { mkdirSync, writeFileSync } from "node:fs";
 import { dirname } from "node:path";
@@ -30,9 +36,7 @@ function main(): void {
   const poem = VERSES.join("\n");
   const size = countCodePoints(poem);
   if (size < 1 || size > LIMIT) {
-    throw new Error(
-      `poem is ${size} characters, outside the 1..${LIMIT} range`,
-    );
+    throw new Error(`poem is ${size} characters, outside the 1..${LIMIT} range`);
   }
   const outPath = "/output/entry.txt";
   mkdirSync(dirname(outPath), { recursive: true });
